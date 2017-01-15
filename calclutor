@@ -1,0 +1,55 @@
+#include<iostream> 
+using namespace std;
+class comp
+{
+public:
+	double x;
+	double y;
+	void pr()
+	{
+		cout<<x<<"+i"<<y<<endl;
+	}
+	static comp sum(comp z1, comp z2)
+	{
+		comp t;
+		t.x = z1.x + z2.x;
+		t.y = z1.y + z2.y;
+		return t;
+	}
+	/*comp operator+(comp z)
+	{
+	x=x+z.x;
+	y=y+z.y;
+	return *this;
+	}*/
+	friend comp operator* (comp z1, comp z2)
+	{
+		comp t;
+		t.x = (z1.x*z2.x - z1.y*z2.y);
+		t.y = (z1.x*z2.y + z2.x*z1.y);
+		return t;
+	}
+};
+comp sum2(comp z1, comp z2)
+{
+	comp t;
+	t.x = z1.x + z2.x;
+	t.y = z1.y + z2.y;
+	return t;
+}
+
+void main()
+{
+	comp z1, z2, z3;
+	comp z4 = { 2,7 };
+	z1.x = 3;
+	z1.y = 2;
+	z2.x = 2;
+	z2.y = 7;
+	z1.pr();
+	z2.pr();
+	//comp::sum(z1,z2).pr(); 
+	//z1.operator+(z2).pr(); 
+	(z1 * z2).pr();
+	z1.pr();
+}
