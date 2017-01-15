@@ -1,0 +1,71 @@
+#include<iostream>
+#include<fstream>
+#include<limits.h>
+using namespace std;
+typedef int arr[100][100];
+void input(arr a, int &n, int &m);
+void rewrite(arr a, int *source, int k, int m);
+int minimum(int *source, int m, int &number);
+void rewrite_(arr a, int *source, int k, int m);
+int composition(int *source, int n);
+
+int main()
+{
+	int m, n, i, k, j, mini = 100, source[100], q = -1, comp = 1;
+	arr a;
+	input(a, n, m);
+	cin >> k;
+	rewrite(a, source, k, m);
+	mini = minimum(source, m, q);
+	rewrite_(a, source, q, n);
+	comp = composition(source, n);
+	cout << mini << " " << comp;
+	return 0;
+}
+void input(arr a, int &n, int &m)
+{
+	ifstream infile("input2.txt");
+	infile >> n >> m;
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			infile >> a[i][j];
+}
+void rewrite(arr a, int *source, int k, int m)
+{
+	for (int i = 0; i < m; i++)
+		source[i] = a[k][i];
+}
+int minimum(int *source, int m, int &number)
+{
+	int minimum = INT_MAX;
+	for (int i = 0; i < m; i++)
+		if (source[i] < minimum)
+		{
+			minimum = source[i];
+			number = i;
+		}
+	return minimum;
+
+}
+void rewrite_(arr a, int *source, int k, int m)
+{
+	for (int i = 0; i < m; i++)
+		source[i] = a[i][k];
+
+}
+int composition(int *source, int n)
+{
+	int comp = 1;
+	int j = 0;
+	for (int i = 0; i < n; i++)
+		if (source[i] != 0)
+		{
+			comp *= source[i];
+			j++;
+		}
+	if (j == 0)
+		return 0;
+	else
+		return comp;
+
+}
