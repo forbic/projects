@@ -1,0 +1,33 @@
+#include<iostream>
+#include<Windows.h>
+#include<map>
+#include<string>
+using namespace std;
+
+int main()
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	map<char, string> Alfa = {
+		{'А',"A"},
+	{'Б',"B"},
+	{'В',"V"},
+	{'Г',"G"},
+	{'Д',"D"},
+	{'Е',"E"}, {'Ж',"ZH"}, {'З',"Z"} ,{'И',"I"}, {'Й',"J"}, {'К',"K"}, {'Л',"L"}, {'М',"M"}, {'Н',"N"}, {'О',"O"}, {'П',"P"}, {'Р',"R"}, {'С',"S"}, {'Т',"T"}, {'У',"U"}, {'Ф',"F"}, {'Х',"H"}, {'Ц',"TS"},{'Ч',"CH"}, {'Ш',"SH"}, {'Щ',"SHCH"}, {'Ы',"Y"}, {'Э',"E"}, {'Ю',"YU"}, {'Я',"YA"}, {'а',"a"},{'б',"b"}, {'в',"v"}, {'г',"g"}, {'д',"d"}, {'е',"e"}, {'ж',"zh"}, {'з',"z"}, {'и',"i"}, {'й',"j"}, {'к',"k"}, {'л',"l"}, {'м',"m"}, {'н',"n"}, {'о',"o"}, {'п',"p"}, {'р',"r"}, {'с',"s"}, {'т',"t"}, {'у',"u"}, {'ф',"f"}, {'х',"h"}, {'ц',"ts"}, {'ч',"ch"}, {'ш',"sh"}, {'щ',"shch"}, {'ы',"y"}, {'э',"e"}, {'ю',"yu"}, {'я',"ya"} };
+	
+	string s,s2="";
+	getline(cin, s);
+	for (int i = 0; i < s.length(); i++)
+	{
+		if (Alfa.find(s[i]) == Alfa.end())
+			s2 += s[i];
+		else
+			s2 += (Alfa.find(s[i])->second);
+	}
+	
+	for (int i=0; i<s2.length(); i++)
+	cout << s2[i];
+
+}
